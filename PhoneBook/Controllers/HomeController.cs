@@ -18,6 +18,7 @@ namespace PhoneBook.Controllers
         public IActionResult getFormVal(Contact contactInfo)
         {
             String number = contactInfo.Number;
+            ViewBag.ad = contactInfo.Name;
             return View();
         }
 

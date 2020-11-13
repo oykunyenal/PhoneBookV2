@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using PhoneBook.Models;
+using System.Configuration;
 
 namespace PhoneBook
 {
@@ -17,6 +22,8 @@ namespace PhoneBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddEntityFrameworkNpgsql().AddDbContext<PhoneBookContext>
+                (opt => opt.UseNpgsql("Server=localhost;Port=5432;Database=TutorialDB;User Id=postgres;Password=postgres;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
